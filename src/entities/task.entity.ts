@@ -1,6 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from 'typeorm';
-import { User } from './user.entity';
-import { Comment } from './comment.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -26,14 +24,8 @@ export class Task {
   })
   status: TaskStatus;
 
-  @ManyToOne(() => User, user => user.tasks)
-  creator: User;
-
   @Column()
   creatorId: string;
-
-  @OneToMany(() => Comment, comment => comment.task)
-  comments: Comment[];
 
   @CreateDateColumn()
   createdAt: Date;

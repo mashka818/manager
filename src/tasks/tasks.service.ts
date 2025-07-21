@@ -16,7 +16,6 @@ export class TasksService {
   async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
     const task = this.taskRepository.create({
       ...createTaskDto,
-      creator: user,
       creatorId: user.id,
       status: TaskStatus.PENDING,
     });
@@ -36,8 +35,7 @@ export class TasksService {
 
   async getTaskById(id: string, user: User): Promise<Task> {
     const task = await this.taskRepository.findOne({ 
-      where: { id },
-      relations: ['creator'] 
+      where: { id }
     });
 
     if (!task) {

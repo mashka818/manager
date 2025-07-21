@@ -28,9 +28,7 @@ export class CommentsService {
 
     const comment = this.commentRepository.create({
       ...createCommentDto,
-      task,
       taskId,
-      author: user,
       authorId: user.id,
     });
 
@@ -46,7 +44,6 @@ export class CommentsService {
 
     return this.commentRepository.find({
       where: { taskId },
-      relations: ['author'],
       order: { createdAt: 'DESC' },
     });
   }

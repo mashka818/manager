@@ -1,6 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { Task } from './task.entity';
-import { Comment } from './comment.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
 @Entity('users')
@@ -20,10 +18,4 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(() => Task, task => task.creator)
-  tasks: Task[];
-
-  @OneToMany(() => Comment, comment => comment.author)
-  comments: Comment[];
 } 
